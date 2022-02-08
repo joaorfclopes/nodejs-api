@@ -14,6 +14,6 @@ export const createUser = async (req, res) => {
       token: generateToken(createdUser)
     })
   } catch (error) {
-    res.status(401).send({ message: 'User could not be created...' })
+    res.status(401).send({ message: 'username already exists...' })
   }
 }
