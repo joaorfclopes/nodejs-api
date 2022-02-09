@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c1fcbfce-c0a4-4575-9b80-c796aac709b3",
+		"_postman_id": "aa1b6910-0c19-430d-854f-1358ccdaddea",
 		"name": "nodejs-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,14 +23,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/user/create",
+							"raw": "http://localhost:8080/users/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"user",
+								"users",
 								"create"
 							]
 						}
@@ -43,17 +43,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/find?user=johndoe",
+							"raw": "http://localhost:8080/users/:user",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"user",
-								"find"
+								"users",
+								":user"
 							],
-							"query": [
+							"variable": [
 								{
 									"key": "user",
 									"value": "johndoe"
@@ -69,15 +69,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/findAll",
+							"raw": "http://localhost:8080/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"user",
-								"findAll"
+								"users"
 							]
 						}
 					},
@@ -86,6 +85,16 @@
 				{
 					"name": "update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -98,17 +107,18 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/user/update?user=johndoe",
+							"raw": "http://localhost:8080/users/update/:user",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"user",
-								"update"
+								"users",
+								"update",
+								":user"
 							],
-							"query": [
+							"variable": [
 								{
 									"key": "user",
 									"value": "johndoe"
@@ -121,24 +131,69 @@
 				{
 					"name": "delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/delete?user=johndoe",
+							"raw": "http://localhost:8080/users/delete/:user",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"user",
-								"delete"
+								"users",
+								"delete",
+								":user"
 							],
-							"query": [
+							"variable": [
 								{
 									"key": "user",
 									"value": "johndoe"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"johndoe\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
 							]
 						}
 					},
