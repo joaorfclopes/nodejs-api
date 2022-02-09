@@ -4,7 +4,7 @@ import User from '../models/userModel.js'
 export const createUser = async (req, res) => {
   const user = new User({
     username: req.body.username,
-    password: hashSync(req.body.password)
+    password: hashSync(req.body.password, 8)
   })
   try {
     const existentUser = await User.findOne({ username: user.username })
@@ -60,7 +60,7 @@ export const updateUser = async (req, res) => {
     const { username, password } = req.body
     if (user) {
       if (username) user.username = username
-      if (password) user.password = hashSync(password)
+      if (password) user.password = hashSync(password, 8)
       const updatedUser = await user.save()
       res.send({ message: 'user updated successfully!', user: updatedUser })
     } else {

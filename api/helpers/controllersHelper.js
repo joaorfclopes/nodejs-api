@@ -3,10 +3,8 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 
 export const Router = express.Router
-
-export const hashSync = password => {
-  return bcrypt.hashSync(password, 8)
-}
+export const compareSync = bcrypt.compareSync
+export const hashSync = bcrypt.hashSync
 
 export const generateToken = user => {
   return jwt.sign(
