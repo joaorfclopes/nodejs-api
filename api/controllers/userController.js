@@ -1,4 +1,9 @@
-import { generateToken, hashSync } from '../helpers/controllersHelper.js'
+import {
+  generateToken,
+  hashSync,
+  validateToken
+} from '../helpers/controllersHelper.js'
+import Token from '../models/tokenModel.js'
 import User from '../models/userModel.js'
 
 export const createUser = async (req, res) => {
@@ -7,15 +12,23 @@ export const createUser = async (req, res) => {
     password: hashSync(req.body.password, 8)
   })
   try {
-    const existentUser = await User.findOne({ username: user.username })
-    if (!existentUser) {
+    const existentUsername = await User.findOne({ username: user.username })
+    if (!existentUsername) {
       const createdUser = await user.save()
+
+      const token = new Token({
+        user: createdUser._id,
+        value: generateToken(createdUser),
+        expired: false
+      })
+      const createdToken = await token.save()
+
       res.send({
         message: 'user created successfully!',
         user: {
           _id: createdUser._id,
           username: createdUser.username,
-          token: generateToken(createdUser)
+          token: createdToken
         }
       })
     } else {
@@ -27,7 +40,7 @@ export const createUser = async (req, res) => {
 }
 
 export const findOne = async (req, res) => {
-  const user = await User.findOne({ username: req.params.user })
+  const user = await User.findById(req.params.id)
   try {
     if (user) {
       res.send({ user })
@@ -55,14 +68,16 @@ export const findAll = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-  const user = await User.findOne({ username: req.params.user })
+  const user = await User.findById(req.params.id)
   try {
     const { username, password } = req.body
     if (user) {
-      if (username) user.username = username
-      if (password) user.password = hashSync(password, 8)
-      const updatedUser = await user.save()
-      res.send({ message: 'user updated successfully!', user: updatedUser })
+      validateToken(req, res, user, async () => {
+        if (username) user.username = username
+        if (password) user.password = hashSync(password, 8)
+        const updatedUser = await user.save()
+        res.send({ message: 'user updated successfully!', user: updatedUser })
+      })
     } else {
       res.status(404).send({ message: 'user not found...' })
     }
@@ -72,11 +87,17 @@ export const updateUser = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
-  const user = await User.findOne({ username: req.params.user })
+  const user = await User.findById(req.params.id)
   try {
     if (user) {
-      const deleteUser = await user.remove()
-      res.send({ message: 'user deleted successfully!', user: deleteUser })
+      validateToken(req, res, user, async () => {
+        const deleteUser = await user.remove()
+
+        const token = await Token.findOne({ user: user._id })
+        const deleteToken = await token.remove()
+
+        res.send({ message: 'user deleted successfully!', user: deleteUser })
+      })
     } else {
       res.status(404).send({ message: 'user does not exist...' })
     }

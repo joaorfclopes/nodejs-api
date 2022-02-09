@@ -11,9 +11,9 @@ const userRoutes = Router()
 
 userRoutes
   .post('/create', createUser)
-  .get('/:user', findOne)
+  .get('/:id', findOne)
   .get('/', findAll)
-  .put('/update/:user', isAuth, updateUser)
-  .delete('/delete/:user', isAuth, deleteUser)
+  .put('/update/:id', isAuth, updateUser)
+  .delete('/delete/:id', isAuth, deleteUser)
 
 export default userRoutes
