@@ -2,18 +2,18 @@ import {
   createUser,
   deleteUser,
   findAll,
-  findUser,
+  findOne,
   updateUser
 } from '../controllers/userController.js'
-import { Router } from '../helpers/routesHelper.js'
+import { isAuth, Router } from '../helpers/routesHelper.js'
 
-const userRoute = Router()
+const userRoutes = Router()
 
-userRoute
+userRoutes
   .post('/create', createUser)
-  .get('/find', findUser)
-  .get('/findAll', findAll)
-  .put('/update', updateUser)
-  .delete('/delete', deleteUser)
+  .get('/:user', findOne)
+  .get('/', findAll)
+  .put('/update/:user', isAuth, updateUser)
+  .delete('/delete/:user', isAuth, deleteUser)
 
-export default userRoute
+export default userRoutes

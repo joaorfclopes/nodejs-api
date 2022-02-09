@@ -26,8 +26,8 @@ export const createUser = async (req, res) => {
   }
 }
 
-export const findUser = async (req, res) => {
-  const user = await User.findOne({ username: req.query.user })
+export const findOne = async (req, res) => {
+  const user = await User.findOne({ username: req.params.user })
   try {
     if (user) {
       res.send({ user })
@@ -55,7 +55,7 @@ export const findAll = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-  const user = await User.findOne({ username: req.query.user })
+  const user = await User.findOne({ username: req.params.user })
   try {
     const { username, password } = req.body
     if (user) {
@@ -72,7 +72,7 @@ export const updateUser = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
-  const user = await User.findOne({ username: req.query.user })
+  const user = await User.findOne({ username: req.params.user })
   try {
     if (user) {
       const deleteUser = await user.remove()
