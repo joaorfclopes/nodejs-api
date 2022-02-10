@@ -31,3 +31,9 @@ export const validateToken = async (req, res, user, callback) => {
       .send({ message: 'you do not have permissions to do this...' })
   }
 }
+
+export const activeToken = async user => {
+  const token = await Token.findOne({ user: user._id, expired: false })
+
+  return token ? true : false
+}
