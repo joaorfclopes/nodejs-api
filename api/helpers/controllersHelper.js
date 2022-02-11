@@ -18,6 +18,16 @@ export const generateToken = user => {
   )
 }
 
+export const createToken = async user => {
+  const token = new Token({
+    user: user._id,
+    value: generateToken(user),
+    expired: false
+  })
+  const createdToken = await token.save()
+  return createdToken
+}
+
 export const validateToken = async (req, res, user, callback) => {
   const token = await Token.findOne({ user: user._id, expired: false })
   const tokenValue = token.value

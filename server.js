@@ -6,10 +6,13 @@ import userRoutes from './api/routes/userRoutes.js'
 const app = express()
 const port = 8080
 
-mongoose.connect('mongodb://localhost/nodejs-api', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(
+  'mongodb+srv://admin:4tf4x67x3XEPM8q9@cluster0.k9ntm.mongodb.net/nodejs-api?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

@@ -1,5 +1,5 @@
 import {
-  generateToken,
+  createToken,
   hashSync,
   validateToken
 } from '../helpers/controllersHelper.js'
@@ -15,20 +15,14 @@ export const createUser = async (req, res) => {
     const existentUsername = await User.findOne({ username: user.username })
     if (!existentUsername) {
       const createdUser = await user.save()
-
-      const token = new Token({
-        user: createdUser._id,
-        value: generateToken(createdUser),
-        expired: false
-      })
-      const createdToken = await token.save()
+      const token = await createToken(createdUser)
 
       res.send({
         message: 'user created successfully!',
         user: {
           _id: createdUser._id,
           username: createdUser.username,
-          token: createdToken
+          token
         }
       })
     } else {
