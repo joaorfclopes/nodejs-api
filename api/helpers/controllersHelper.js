@@ -36,9 +36,7 @@ export const validateToken = async (req, res, user, callback) => {
   if (tokenValue === headerAuth) {
     callback()
   } else {
-    res
-      .status(401)
-      .send({ message: 'you do not have permissions to do this...' })
+    res.status(401).send({ message: 'your token has expired, please login...' })
   }
 }
 

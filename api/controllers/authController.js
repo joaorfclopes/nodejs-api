@@ -22,6 +22,8 @@ export const login = async (req, res) => {
             username: user.name,
             token
           })
+        } else {
+          res.status(401).send({ message: 'invalid username or password...' })
         }
       } else {
         res
@@ -29,7 +31,7 @@ export const login = async (req, res) => {
           .send({ message: 'user has currently an active session...' })
       }
     } else {
-      res.status(401).send({ message: 'invalid username or password...' })
+      res.status(404).send({ message: 'user not found...' })
     }
   } catch (error) {
     res.status(500).send({ message: 'error logging in', error })
