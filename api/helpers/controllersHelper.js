@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import express from 'express'
 import jwt from 'jsonwebtoken'
+import mongoose from 'mongoose'
 import Token from '../models/tokenModel.js'
 
 export const Router = express.Router
@@ -44,4 +45,10 @@ export const activeToken = async user => {
   const token = await Token.findOne({ user: user._id, expired: false })
 
   return token ? true : false
+}
+
+export const objectId = id => {
+  const isValid = mongoose.isValidObjectId(id)
+
+  return isValid ? id : null
 }

@@ -1,6 +1,7 @@
 import {
   createToken,
   hashSync,
+  objectId,
   validateToken
 } from '../helpers/controllersHelper.js'
 import Token from '../models/tokenModel.js'
@@ -34,7 +35,7 @@ export const createUser = async (req, res) => {
 }
 
 export const findOne = async (req, res) => {
-  const user = await User.findById(req.params.id)
+  const user = await User.findById(objectId(req.params.id))
   try {
     if (user) {
       res.send({ user })
@@ -62,7 +63,7 @@ export const findAll = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-  const user = await User.findById(req.params.id)
+  const user = await User.findById(objectId(req.params.id))
   try {
     const { username, password } = req.body
     if (user) {
@@ -81,7 +82,7 @@ export const updateUser = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
-  const user = await User.findById(req.params.id)
+  const user = await User.findById(objectId(req.params.id))
   try {
     if (user) {
       validateToken(req, res, user, async () => {

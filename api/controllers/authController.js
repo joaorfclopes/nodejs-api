@@ -1,7 +1,8 @@
 import {
   activeToken,
   compareSync,
-  createToken
+  createToken,
+  objectId
 } from '../helpers/controllersHelper.js'
 import Token from '../models/tokenModel.js'
 import User from '../models/userModel.js'
@@ -39,7 +40,7 @@ export const login = async (req, res) => {
 }
 
 export const logout = async (req, res) => {
-  const user = await User.findById(req.params.id)
+  const user = await User.findById(objectId(req.params.id))
   try {
     if (user) {
       const tokens = await Token.find({ user: req.params.id, expired: false })
