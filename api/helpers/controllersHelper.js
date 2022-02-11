@@ -30,7 +30,7 @@ export const createToken = async user => {
 
 export const validateToken = async (req, res, user, callback) => {
   const token = await Token.findOne({ user: user._id, expired: false })
-  const tokenValue = token.value
+  const tokenValue = token && token.value
   const headerAuth = req.headers.authorization.replace('Bearer ', '')
 
   if (tokenValue === headerAuth) {
