@@ -44,7 +44,7 @@ export const validateToken = async (req, res, user, callback) => {
 export const activeToken = async user => {
   const token = await Token.findOne({ user: user._id, expired: false })
 
-  return token ? true : false
+  return !!token
 }
 
 export const objectId = id => {

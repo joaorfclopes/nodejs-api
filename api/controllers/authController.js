@@ -48,7 +48,7 @@ export const logout = async (req, res) => {
         tokens &&
           tokens.forEach(async token => {
             token.expired = true
-            const updatedToken = await token.save()
+            await token.save()
           })
 
         res.send({ message: 'logout successful!' })

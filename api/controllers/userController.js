@@ -89,7 +89,7 @@ export const deleteUser = async (req, res) => {
         const deleteUser = await user.remove()
 
         const token = await Token.findOne({ user: user._id })
-        const deleteToken = await token.remove()
+        await token.remove()
 
         res.send({ message: 'user deleted successfully!', user: deleteUser })
       })
