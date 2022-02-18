@@ -3,4 +3,4 @@
 
 echo $'\n'[Husky 🐶] Formating code... 📝 && npm run pretty-quick
 echo $'\n'[Husky 🐶] Linting code... 🔨 && npm run lint
-echo [Husky 🐶] All done! 🎉
+echo [Husky 🐶] All done! 🎉 $'\n'
