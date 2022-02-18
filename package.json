@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "pretty-quick": "pretty-quick",
-    "eslint": "./node_modules/eslint/bin/eslint.js ./ --fix"
+    "lint": "./node_modules/eslint/bin/eslint.js ./ --fix",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -29,10 +30,5 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pretty-quick && npm run eslint"
-    }
   }
 }

@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo $'\n'[Husky 🐶] Formating code... 📝 && npm run pretty-quick
+echo $'\n'[Husky 🐶] Linting code... 🔨 && npm run lint
