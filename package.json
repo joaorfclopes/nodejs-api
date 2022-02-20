@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "pretty-quick": "pretty-quick",
-    "lint": "./node_modules/eslint/bin/eslint.js ./ --fix",
+    "lint": "eslint ./ --fix",
     "prepare": "husky install"
   },
   "author": "",
