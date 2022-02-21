@@ -15,7 +15,7 @@ export const generateToken = user => {
       username: user.username
     },
     'somethingsecret',
-    { expiresIn: '10h' }
+    { expiresIn: '60s' }
   )
 }
 
