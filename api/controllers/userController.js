@@ -88,10 +88,13 @@ export const deleteUser = async (req, res) => {
       validateToken(req, res, user, async () => {
         const deleteUser = await user.remove()
 
-        const token = await Token.findOne({ user: user._id })
-        await token.remove()
+        const tokens = await Token.deleteMany({ user: user._id })
 
-        res.send({ message: 'user deleted successfully!', user: deleteUser })
+        res.send({
+          message: 'user deleted successfully!',
+          user: deleteUser,
+          tokensDelete: tokens
+        })
       })
     } else {
       res.status(404).send({ message: 'user does not exist...' })
