@@ -45,9 +45,9 @@ export const validateToken = async (req, res, user, callback) => {
 export const isExpired = date => {
   const dateNow = new Date()
   const difference = Math.abs(dateNow - date)
-  const result = (difference / (1000 * 60 * 60)).toFixed(1)
+  const passedHours = (difference / (1000 * 60 * 60)).toFixed(1)
 
-  return result >= 10
+  return passedHours >= 10
 }
 
 export const activeToken = async user => {
