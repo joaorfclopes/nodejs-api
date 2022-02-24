@@ -2,7 +2,8 @@ import {
   activeToken,
   compareSync,
   createToken,
-  objectId
+  objectId,
+  validateToken
 } from '../helpers/controllersHelper.js'
 import Token from '../models/tokenModel.js'
 import User from '../models/userModel.js'
@@ -45,13 +46,14 @@ export const logout = async (req, res) => {
     if (user) {
       const tokens = await Token.find({ user: req.params.id, expired: false })
       if (tokens.length > 0) {
-        tokens &&
-          tokens.forEach(async token => {
-            token.expired = true
-            await token.save()
-          })
-
-        res.send({ message: 'logout successful!' })
+        validateToken(req, res, user, async () => {
+          tokens &&
+            tokens.forEach(async token => {
+              token.expired = true
+              await token.save()
+            })
+          res.send({ message: 'logout successful!' })
+        })
       } else {
         res.status(400).send({ message: 'user has no active sessions...' })
       }

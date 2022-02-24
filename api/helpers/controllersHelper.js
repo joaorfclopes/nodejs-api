@@ -42,8 +42,28 @@ export const validateToken = async (req, res, user, callback) => {
   }
 }
 
+export const isExpired = date => {
+  const dateNow = new Date()
+  const difference = Math.abs(dateNow - date)
+  const result = (difference / (1000 * 60 * 60)).toFixed(1)
+
+  return result >= 10
+}
+
 export const activeToken = async user => {
   const token = await Token.findOne({ user: user._id, expired: false })
+  const createdAt = token && token.createdAt
+
+  if (token) {
+    if (isExpired(createdAt)) {
+      token.expired = true
+      await token.save()
+
+      return false
+    } else {
+      return true
+    }
+  }
 
   return !!token
 }
