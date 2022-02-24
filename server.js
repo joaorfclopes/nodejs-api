@@ -2,17 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import authRoutes from './api/routes/authRoutes.js'
 import userRoutes from './api/routes/userRoutes.js'
+import { appPort, mongoUri } from './globals.js'
 
 const app = express()
-const port = 8080
 
-mongoose.connect(
-  'mongodb+srv://admin:4tf4x67x3XEPM8q9@cluster0.k9ntm.mongodb.net/nodejs-api?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-)
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -24,6 +21,6 @@ app.use((err, req, res) => {
   res.status(500).send({ message: err.message })
 })
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}! 🚀`)
+app.listen(appPort, () => {
+  console.log(`Server is listening on port ${appPort}! 🚀`)
 })

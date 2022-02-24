@@ -1,3 +1,9 @@
+# history extension
 .history
+
+# node
 node_modules
-package-lock.json
+
+# development environment
+.env.development
+.env.staging
