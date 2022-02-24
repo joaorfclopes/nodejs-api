@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
+import { jwtSecret } from '../../globals.js'
 import Token from '../models/tokenModel.js'
 
 export const Router = express.Router
@@ -14,7 +15,7 @@ export const generateToken = user => {
       _id: user._id,
       username: user.username
     },
-    'somethingsecret',
+    jwtSecret,
     { expiresIn: '10h' }
   )
 }

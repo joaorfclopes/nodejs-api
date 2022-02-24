@@ -8,5 +8,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const appPort = process.env.APP_PORT
 const mongoUri = process.env.MONGODB_URI
+const jwtSecret = process.env.JWT_SECRET
 
-export { appPort, mongoUri }
+export { appPort, mongoUri, jwtSecret }
