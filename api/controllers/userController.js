@@ -10,7 +10,7 @@ import User from '../models/userModel.js'
 export const createUser = async (req, res) => {
   const user = new User({
     username: req.body.username,
-    password: hashSync(req.body.password, 8)
+    password: req.body.password && hashSync(req.body.password, 8)
   })
   try {
     const existentUsername = await User.findOne({ username: user.username })
