@@ -11,8 +11,8 @@
     "lint": "eslint ./ --fix",
     "prepare": "husky install"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Joao Lopes",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -32,5 +32,8 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.1"
+  },
+  "engines": {
+    "node": "14.17.0"
   }
 }
