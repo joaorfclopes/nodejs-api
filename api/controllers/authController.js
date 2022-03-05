@@ -2,9 +2,9 @@ import {
   activeToken,
   compareSync,
   createToken,
-  objectId,
   validateToken
 } from '../helpers/controllersHelper.js'
+import { objectId } from '../helpers/general.js'
 import Token from '../models/tokenModel.js'
 import User from '../models/userModel.js'
 

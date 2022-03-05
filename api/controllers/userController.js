@@ -1,28 +1,33 @@
 import {
   createToken,
   hashSync,
-  objectId,
+  isAdminLoggedIn,
   validateToken
 } from '../helpers/controllersHelper.js'
+import { objectId, Role } from '../helpers/general.js'
 import Token from '../models/tokenModel.js'
 import User from '../models/userModel.js'
 
 export const createUser = async (req, res) => {
+  const isAdmin = await isAdminLoggedIn(req, res)
+
   const user = new User({
     username: req.body.username,
-    password: req.body.password && hashSync(req.body.password, 8)
+    password: req.body.password && hashSync(req.body.password, 8),
+    role: isAdmin ? req.body.role : Role.USER
   })
   try {
     const existentUsername = await User.findOne({ username: user.username })
     if (!existentUsername) {
       const createdUser = await user.save()
-      const token = await createToken(createdUser)
+      const token = !isAdmin ? await createToken(createdUser) : null
 
       res.send({
         message: 'user created successfully!',
         user: {
           _id: createdUser._id,
           username: createdUser.username,
+          role: createdUser.role,
           token
         }
       })
