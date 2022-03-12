@@ -6,4 +6,4 @@ node_modules
 
 # development environment
 .env.*
-!.env.*.example
+!.env.development
