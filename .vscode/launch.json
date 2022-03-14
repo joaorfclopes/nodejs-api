@@ -7,14 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "development",
+      "name": "local",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
       "program": "${workspaceFolder}/server.js",
       "restart": true,
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "local"
       }
     },
     {
@@ -28,6 +28,19 @@
       "internalConsoleOptions": "neverOpen",
       "env": {
         "NODE_ENV": "staging"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "production",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
+      "program": "${workspaceFolder}/server.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "production"
       }
     }
   ]

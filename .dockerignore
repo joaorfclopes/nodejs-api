@@ -4,6 +4,8 @@
 # node
 node_modules
 
-# development environment
-.env.*
-!.env.development
+# vscode
+.vscode
+
+# husky
+.husky

@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({
     path: `./.env.${process.env.NODE_ENV}`
   })
+} else {
+  dotenv.config()
 }
 
 const appPort = process.env.PORT || 5000
