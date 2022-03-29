@@ -4,6 +4,7 @@
 - NPM
 - MongoDB database
 - Postman
+- Docker (optional)
 
 ## Setup 🔨
 1. Run `git clone git@github.com:joaorfclopes/nodejs-api.git`
@@ -18,6 +19,14 @@
 
 **Staging environment:**
 - In the root of the project run `npm run start:stag`
+
+## Docker 🐳 (optional)
+1. In root folder, create an `.env` file and add your configs (don't forget that you can't point to your local db with docker)
+2. Start docker in your machine
+3. Inside the root folder run `docker compose up`
+
+## Debug 🐞
+- If you're using VS Code, just go to *"Run and Debug"* tab, select the environment that you want and press **start (F5)**
 
 ## Live example 🌍
 The live nodejs-api example is hosted here: [nodejs-api](https://cryptic-sierra-83506.herokuapp.com/)
