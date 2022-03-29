@@ -1,0 +1,11 @@
+# history extension
+.history
+
+# node
+node_modules
+
+# vscode
+.vscode
+
+# husky
+.husky

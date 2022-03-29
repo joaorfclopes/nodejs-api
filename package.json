@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon server.js",
+    "start": "nodemon --inspect=0.0.0.0:9229 server.js",
+    "start:local": "NODE_ENV=local nodemon server.js",
     "start:stag": "NODE_ENV=staging nodemon server.js",
+    "start:prod": "NODE_ENV=production node server.js",
     "pretty-quick": "pretty-quick",
     "lint": "eslint ./ --fix",
     "prepare": "husky install"
