@@ -16,16 +16,16 @@
   "author": "Joao Lopes",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-promise": "^6.0.0",
     "husky": "^7.0.4",
     "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.1",
     "pretty-quick": "^3.1.3"
   },
   "dependencies": {
@@ -33,7 +33,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.1"
+    "mongoose": "^6.2.9"
   },
   "engines": {
     "node": "14.17.0"
