@@ -6,13 +6,25 @@
   "configurations": [
     {
       "type": "node",
+      "request": "attach",
+      "name": "docker",
+      "restart": true,
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      "protocol": "inspector",
+      "internalConsoleOptions": "openOnSessionStart",
+      "preLaunchTask": "docker-compose"
+    },
+    {
+      "type": "node",
       "request": "launch",
       "name": "local",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
       "program": "${workspaceFolder}/server.js",
       "restart": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "internalConsoleOptions": "openOnSessionStart",
       "env": {
         "NODE_ENV": "local"
       }
@@ -24,8 +36,7 @@
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
       "program": "${workspaceFolder}/server.js",
       "restart": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "internalConsoleOptions": "openOnSessionStart",
       "env": {
         "NODE_ENV": "staging"
       }
@@ -37,8 +48,7 @@
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
       "program": "${workspaceFolder}/server.js",
       "restart": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "internalConsoleOptions": "openOnSessionStart",
       "env": {
         "NODE_ENV": "production"
       }

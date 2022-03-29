@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "docker-compose",
+      "command": "docker-compose",
+      "args": ["up", "-d"],
+      "type": "shell"
+    }
+  ]
+}
